@@ -115,6 +115,7 @@ class CallbackModule(CallbackBase):
         result_path = os.path.join(task_id, "result.json")
         with open(result_path, "w") as f:
             f.write(json.dumps(output, cls=AnsibleJSONEncoder, indent=4, sort_keys=True))
+        self._display.display(json.dumps(output, cls=AnsibleJSONEncoder, indent=self._json_indent, sort_keys=True))
 
     def _record_task_result(self, on_info, result, **kwargs):
         """This function is used as a partial to add failed/skipped info in a single method"""
